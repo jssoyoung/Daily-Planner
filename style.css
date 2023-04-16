@@ -57,7 +57,12 @@ body {
     color: white;
   }
   
-  .saveBtn {
+  .footer {
+    margin-top: 2em;
+    text-align: center;
+  }
+
+  .saveBtn, .clearBtn {
     border-left: 1px solid black;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -65,12 +70,11 @@ body {
     color: white;
   }
   
-  .saveBtn i:hover {
+  .saveBtn, .clearBtn i:hover {
     font-size: 20px;
     transition: all 0.3s ease-in-out;
   }
 
-  #clear-calendar button {
-    text-align: center;
-    padding: 10px;
+  .container, .row {
+    border-style: solid;
   }
