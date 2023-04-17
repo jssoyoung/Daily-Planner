@@ -4,6 +4,7 @@ var timeDisplayEl = $('#time-display');
 var now = dayjs();
 $('#currentDay').text(now.format('MMM D, YYYY'));
 
+// debug why not working
 function setHourColors() {
     for (var i = 9; i < 18; i++) {
         if (i < now.hour()) {
@@ -29,9 +30,14 @@ function loadStoredData() {
             hour3:"",
             hour4:"",
             hour5:"",
-        };
+        }
     }
     //TODO load existing data from local storage
+    var eventDisplay = document.querySelector("#hour-");
+    var eventsEl = document.createElement("p");
+    var calendarEvents;
+    console.log(eventsData);
+    eventsEl.textcontent = `${eventDisplay}`;
 }
 
 function handleSaveClick(event) {
