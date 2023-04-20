@@ -1,11 +1,13 @@
 var eventsData;
 var timeDisplayEl = $('#time-display');
 
-var now = dayjs();
-$('#currentDay').text(now.format('MMM D, YYYY'));
+// Displays the date
+var day = dayjs();
+$('#currentDay').text(day.format('MMM D, YYYY'));
 
-// debug why not working
+//Function to change the hours using the "past", "present", and "future" css
 function setHourColors() {
+    var now = dayjs();
     for (var i = 9; i < 18; i++) {
         if (i < now.hour()) {
             $("#hour-" + i + " textarea").addClass("past");
@@ -13,10 +15,11 @@ function setHourColors() {
             $("#hour-" + i + " textarea").addClass("present");
         } else if (i > now.hour()) {
             $("#hour-" + i + " textarea").addClass("future");
-        }
-    }
-}
+        };
+    };
+};
 
+//Function get items from local storage
 function loadStoredData() {
     eventsData = JSON.parse(localStorage.getItem("calendarEvents"));
     if (!eventsData) {
@@ -25,20 +28,25 @@ function loadStoredData() {
             hour10:"",
             hour11:"",
             hour12:"",
-            hour1:"",
-            hour2:"",
-            hour3:"",
-            hour4:"",
-            hour5:"",
-        }
-    }
-    //TODO load existing data from local storage
-    var eventDisplay = document.querySelector("#hour-");
-    var eventsEl = document.createElement("p");
-    var calendarEvents;
-    console.log(eventsData);
-    eventsEl.textcontent = `${eventDisplay}`;
-}
+            hour13:"",
+            hour14:"",
+            hour15:"",
+            hour16:"",
+            hour17:"",
+        };
+    };  
+    renderEvents(eventsData);
+};
+
+//Function to display saved events onto screen
+function renderEvents(events) {
+    console.log(events)
+  var eventKeys = Object.keys(events);
+  for (var i = 0; i < eventKeys.length; i++) {
+    var eventKey = eventKeys[i];
+    var timeBlockEl = $(`#hour-${i+9}`).children("textarea").val(events[eventKey]);
+  };
+};
 
 function handleSaveClick(event) {
     // grab data from HTML
@@ -51,10 +59,11 @@ function handleSaveClick(event) {
 
     // store in local storage
     localStorage.setItem("calendarEvents", JSON.stringify(eventsData));
-}
+};
 
 $('.saveBtn').on('click', handleSaveClick);
 
+//Function upon loading screen
 $(function() {
     loadStoredData();
     setHourColors();
